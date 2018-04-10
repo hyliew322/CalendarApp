@@ -1,0 +1,232 @@
+<html>
+
+<head>
+    <title>Welcome to Calendar!</title>
+    <link type="text/css" href="login.css" rel="stylesheet" />
+</head>
+
+<body onload="startInterval(); readDate();">
+    <div id="header">CheckYourCalender</div>
+    <div id="currentTime" onclick="clearInterval(time)">
+        <span id="num1" class="time" onclick="add1()"></span>
+        <span id="num2" class="time" onclick="add2()"></span>
+        <span>:</span>
+        <span id="num3" class="time" onclick="add3()"></span>
+        <span id="num4" class="time" onclick="add4()"></span>
+        <span>:</span>
+        <span id="num5" class="time" onclick="add5()"></span>
+        <span id="num6" class="time" onclick="add6()"></span>
+        <span id="timePeriod" onclick="change()"></span>
+    </div>
+    <div id="calendar">
+        <table>
+            <tr>
+                <th id="year1">20</th>
+                <td id="previousMonth" onclick="previousMonth()">&#8810;</td>
+                <th id="month" colspan="3">Month</th>
+                <td id="nextMonth" onclick="nextMonth()">&#8811;</td>
+                <th id="year2">18</th>
+            </tr>
+            <tr>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>23</td>
+                <td>24</td>
+                <td>25</td>
+                <td>26</td>
+                <td>27</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td>30</td>
+                <td>31</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <button id="enter" onclick="enterHome()">Enter!</button>
+</body>
+
+<script>
+    function startInterval() {
+        time = setInterval("readTime()", 1000);
+    }
+
+    function readTime() {
+        var currentTime = Date().substring(Date().indexOf(":") - 2, Date().indexOf(":") + 6);
+        var currentTimeStr = currentTime.split(":");
+
+        if (parseInt(currentTimeStr[0]) > 12) {
+            currentTimeStr[0] = parseInt(currentTimeStr[0]) - 12;
+            if (parseInt(currentTimeStr[0]) < 10) {
+                document.getElementById("num1").innerHTML = 0;
+                document.getElementById("num2").innerHTML = currentTimeStr[0];
+                document.getElementById("timePeriod").textContent = "PM"; 
+            }
+            else {
+                var num1 = parseInt((currentTimeStr[0].split(""))[0]);
+                document.getElementById("num1").innerHTML = num1;
+                var num2 = parseInt((currentTimeStr[0].split(""))[1]);
+                document.getElementById("num2").innerHTML = num2;
+                document.getElementById("timePeriod").textContent = "PM"; 
+            }
+        }
+        else {
+            var num1 = parseInt((currentTimeStr[0].split(""))[0]);
+            document.getElementById("num1").innerHTML = num1;
+            var num2 = parseInt((currentTimeStr[0].split(""))[1]);
+            document.getElementById("num2").innerHTML = num2;
+            document.getElementById("timePeriod").textContent = "AM"; 
+        }
+
+        var num3 = parseInt((currentTimeStr[1].split(""))[0]);
+        document.getElementById("num3").innerHTML = num3;
+        var num4 = parseInt((currentTimeStr[1].split(""))[1]);
+        document.getElementById("num4").innerHTML = num4;
+        var num5 = parseInt((currentTimeStr[2].split(""))[0]);
+        document.getElementById("num5").innerHTML = num5;
+        var num6 = parseInt((currentTimeStr[2].split(""))[1]);
+        document.getElementById("num6").innerHTML = num6;
+    }
+
+    function readDate() {
+        var currentDate = new Date();
+        var year = currentDate.getFullYear();
+        var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var day = currentDate.getDate();
+
+        //document.getElementById("year1").innerHTML = year.substring(0, 2);
+        //document.getElementById("year2").innerHTML = year.substring(2);
+        document.getElementById("month").innerHTML = month[currentDate.getMonth()];
+    }
+
+    function add1() {
+        if (parseInt(document.getElementById("num1").innerHTML) === 0) {
+            document.getElementById("num1").innerHTML = parseInt(document.getElementById("num1").innerHTML) + 1;
+        }
+        else {
+            document.getElementById("num1").innerHTML = 0;
+        }
+    }
+
+    function add2() {
+        if (document.getElementById("num1").innerHTML === "1") {
+            if (parseInt(document.getElementById("num2").innerHTML) < 2) {
+                document.getElementById("num2").innerHTML = parseInt(document.getElementById("num2").innerHTML) + 1;
+            }
+            else {
+                document.getElementById("num2").innerHTML = 0;
+            }
+        }
+        else {
+            if (parseInt(document.getElementById("num2").innerHTML) < 9) {
+                document.getElementById("num2").innerHTML = parseInt(document.getElementById("num2").innerHTML) + 1;
+            }
+            else {
+                document.getElementById("num2").innerHTML = 0;
+            }
+        }
+    }
+
+    function add3() {
+        if (parseInt(document.getElementById("num3").innerHTML) < 5) {
+            document.getElementById("num3").innerHTML = parseInt(document.getElementById("num3").innerHTML) + 1;
+        }
+        else {
+            document.getElementById("num3").innerHTML = 0;
+        }
+    }
+
+    function add4() {
+        if (parseInt(document.getElementById("num4").innerHTML) < 9) {
+            document.getElementById("num4").innerHTML = parseInt(document.getElementById("num4").innerHTML) + 1;
+        }
+        else {
+            document.getElementById("num4").innerHTML = 0;
+        }
+    }
+
+    function add5() {
+        if (parseInt(document.getElementById("num5").innerHTML) < 5) {
+            document.getElementById("num5").innerHTML = parseInt(document.getElementById("num5").innerHTML) + 1;
+        }
+        else {
+            document.getElementById("num5").innerHTML = 0;
+        }
+    }
+
+    function add6() {
+        if (parseInt(document.getElementById("num6").innerHTML) < 9) {
+            document.getElementById("num6").innerHTML = parseInt(document.getElementById("num6").innerHTML) + 1;
+        }
+        else {
+            document.getElementById("num6").innerHTML = 0;
+        }
+    }
+
+    function change() {
+        var timePeriod = document.getElementById("timePeriod");
+        if (timePeriod.innerHTML === "AM") {
+            timePeriod.innerHTML = "PM";
+        }
+        else {
+            timePeriod.innerHTML = "AM";
+        }
+    }
+
+    function previousMonth() {
+
+    }
+
+    /*function nextMonth() {
+        var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var newMonth = Date().getMonth() + 1;
+        document.getElementById("month").innerHTML = month[newMonth];
+    }*/
+
+    function enterHome() {
+        location.href = "home.html";
+    }
+
+</script>
+
+</html>

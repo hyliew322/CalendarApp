@@ -1,0 +1,62 @@
+#header {
+    background-color: plum;
+    height: 50px;
+    float: top;
+    text-align: center;
+    font-family: fantasy;
+    font-size: 2em;
+    color: white;
+}
+
+#currentTime {
+    font-size: 1.5em;
+    font-family: monospace;
+    position: absolute;
+    top: 175px;
+    left: 610px;
+    border: dashed;
+    padding: 20px;
+}
+
+.time, #previousMonth, #nextMonth {
+    cursor: pointer;
+}
+
+button {
+    position: absolute;
+    top: 550px;
+    left: 675px;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Georgia;
+    color: #ffffff;
+    font-size: 20px;
+    background: #e668de;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+  
+  button:hover {
+    cursor: pointer;
+    background: #ed40d9;
+    text-decoration: none;
+  }
+
+  table {
+      border: thin solid black;
+      position: absolute;
+      top: 275px;
+      left: 390px;
+
+  }
+
+  th, td {
+      border: thin dotted gray;
+      width: 5.5em;
+      height: 2em;
+  }
+
+  td {
+      text-align: center;
+  }
